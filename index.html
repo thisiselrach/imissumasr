@@ -4,27 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Halaman Utamanya</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,700&display=swap" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #e0eafc, #cfdef3);
-      font-family: 'Playfair Display', serif;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      background: linear-gradient(145deg, #2b0000, #4a0e0e, #6b1d1d);
+      font-family: 'Poppins', sans-serif;
       cursor: pointer;
+      transition: background 1s ease-in-out;
     }
 
     .message {
       font-size: 3rem;
-      color: #cc2b5e;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+      color: #ffdddd;
+      text-shadow: 0 0 15px rgba(255, 100, 100, 0.4);
       text-align: center;
-      white-space: nowrap;
+      letter-spacing: 3px;
       opacity: 0;
       animation: fadeIn 2s ease forwards;
     }
@@ -32,6 +35,29 @@
     @keyframes fadeIn {
       to {
         opacity: 1;
+      }
+    }
+
+    /* Efek halus di huruf saat muncul */
+    .message span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 0.4s forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsif untuk layar kecil */
+    @media (max-width: 600px) {
+      .message {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
       }
     }
   </style>
@@ -42,20 +68,20 @@
   <script>
     const text = "Mr. AC";
     const container = document.getElementById('message');
-    let i = 0;
 
     function typeLetter() {
-      if (i < text.length) {
-        container.innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeLetter, 90);
-      }
+      [...text].forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.style.animationDelay = `${i * 0.15}s`;
+        container.appendChild(span);
+      });
     }
 
     setTimeout(typeLetter, 500);
 
     function goToNextSlide() {
-      window.location.href = "slide7.html"; // Ganti nama file jika slide berikut beda
+      window.location.href = "slide7.html"; // Ganti sesuai kebutuhan
     }
   </script>
 </body>
