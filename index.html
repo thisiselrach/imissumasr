@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Halaman Utamanya</title>
-  
+
+  <!-- Font elegan dan lembut -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
@@ -20,6 +21,7 @@
       font-family: 'Poppins', sans-serif;
       cursor: pointer;
       transition: background 1s ease-in-out;
+      position: relative;
     }
 
     .message {
@@ -30,6 +32,7 @@
       letter-spacing: 3px;
       opacity: 0;
       animation: fadeIn 2s ease forwards;
+      z-index: 2;
     }
 
     @keyframes fadeIn {
@@ -38,7 +41,6 @@
       }
     }
 
-    /* Efek halus di huruf saat muncul */
     .message span {
       display: inline-block;
       opacity: 0;
@@ -53,7 +55,24 @@
       }
     }
 
-    /* Responsif untuk layar kecil */
+    /* Area klik kanan dan kiri transparan */
+    .nav-area {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .right {
+      right: 0;
+    }
+
+    /* Responsif di HP */
     @media (max-width: 600px) {
       .message {
         font-size: 2.2rem;
@@ -62,8 +81,12 @@
     }
   </style>
 </head>
-<body onclick="goToNextSlide()">
+<body>
   <div class="message" id="message"></div>
+
+  <!-- Area klik kiri-kanan -->
+  <div class="nav-area left" onclick="goToPreviousSlide()"></div>
+  <div class="nav-area right" onclick="goToNextSlide()"></div>
 
   <script>
     const text = "Mr. AC";
@@ -81,7 +104,11 @@
     setTimeout(typeLetter, 500);
 
     function goToNextSlide() {
-      window.location.href = "slide7.html"; // Ganti sesuai kebutuhan
+      window.location.href = "slide7.html"; // Ganti ke halaman berikutnya
+    }
+
+    function goToPreviousSlide() {
+      window.location.href = "slide5.html"; // Ganti ke halaman sebelumnya
     }
   </script>
 </body>
